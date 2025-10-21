@@ -1,0 +1,84 @@
+Set B_wheel_j1 to 0.000000 radians
+Set R_wheel_j1 to 0.000000 radians
+Set L_wheel_j1 to 0.000000 radians
+Set torso_j1 to 1.043881 radians
+Set B_wheel_j2 to 0.000000 radians
+Set R_wheel_j2 to 0.000000 radians
+Set L_wheel_j2 to 0.000000 radians
+Set torso_j2 to 1.947089 radians
+Set torso_j3 to 0.522552 radians
+Set head_j1 to -0.373640 radians
+Set L_arm_j1 to 1.570821 radians
+Set R_arm_j1 to -0.000120 radians
+Set head_j2 to -0.000175 radians
+Set L_arm_j2 to 0.000072 radians
+Set R_arm_j2 to 0.000000 radians
+Set head_j3 to 0.003229 radians
+Set L_arm_j3 to -0.000049 radians
+Set R_arm_j3 to -0.000047 radians
+Set L_arm_j4 to -3.071004 radians
+Set R_arm_j4 to -0.000073 radians
+Set L_arm_j5 to -0.000047 radians
+Set R_arm_j5 to 0.000072 radians
+Set L_arm_j6 to 0.000096 radians
+Set R_arm_j6 to 0.000072 radians
+Set L_arm_j7 to -0.698202 radians
+Set R_arm_j7 to -0.000072 radians
+Robot loaded with 26 degrees of freedom
+Number of active joints: 26
+Active joints:
+  0: B_wheel_j1
+  1: R_wheel_j1
+  2: L_wheel_j1
+  3: torso_j1
+  4: B_wheel_j2
+  5: R_wheel_j2
+  6: L_wheel_j2
+  7: torso_j2
+  8: torso_j3
+  9: head_j1
+  10: L_arm_j1
+  11: R_arm_j1
+  12: head_j2
+  13: L_arm_j2
+  14: R_arm_j2
+  15: head_j3
+  16: L_arm_j3
+  17: R_arm_j3
+  18: L_arm_j4
+  19: R_arm_j4
+  20: L_arm_j5
+  21: R_arm_j5
+  22: L_arm_j6
+  23: R_arm_j6
+  24: L_arm_j7
+  25: R_arm_j7
+Camera resolution: 1920x1080 (aspect ratio: 1.778)
+Camera FOV: 101.88° x 69.46° (horizontal x vertical)
+Camera FOV: 1.7781 x 1.2123 radians
+[HEAD] Head world position: [-0.23427661  0.002       1.5333982 ]
+Left camera world position: [-0.19777661  0.025       1.58229815]
+Right camera world position: [-0.19777661 -0.025       1.58229815]
+Left camera intrinsic matrix
+ [[778.98724   0.      960.     ]
+ [  0.      778.98724 540.     ]
+ [  0.        0.        1.     ]]
+Right camera intrinsic matrix
+ [[778.98724   0.      960.     ]
+ [  0.      778.98724 540.     ]
+ [  0.        0.        1.     ]]
+
+=== ZED X Mini Camera Intrinsic Parameters ===
+Resolution: 1920 x 1080
+Left camera fx: 779.04, fy: 779.04, cx: 990.10, cy: 576.96
+Right camera fx: 779.04, fy: 779.04, cx: 990.10, cy: 576.96
+Focal length: 2.21 mm
+Field of View: 101.88° x 69.46° (H x V)
+Stereo baseline: 0.0499 m
+===============================================
+Stereo cameras mounted on head_l3 link
+Left camera position: [0.0365 0.023  0.0489]
+Right camera position: [ 0.0365 -0.027   0.0489]
+Stereo camera images saved:
+  Left: left_color.png, left_depth.png, left_label0.png, left_label1.png
+  Right: right_color.png, right_depth.png, right_label0.png, right_label1.png
