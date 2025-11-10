@@ -27,7 +27,7 @@ def compare_depth_images():
     script_dir = Path(__file__).parent
     real_path = script_dir / "real_depth.png"
     left_path = script_dir / "left_depth.png"
-    left_depth_path = script_dir/ "left_depth_depth.png"
+    left_depth_path = script_dir/ "depth_depth.png"
     
     # Load images
     real_depth = cv2.imread(str(real_path), cv2.IMREAD_UNCHANGED)

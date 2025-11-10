@@ -3,6 +3,7 @@ import json
 import numpy as np
 from PIL import Image, ImageColor
 import sapien
+from transforms3d.quaternions import qmult
 
 # Simulation for Vega robot with stereo camera functionality
 # This file loads the Vega robot and provides stereo camera image capture
@@ -118,8 +119,6 @@ def configure_robot_joints(robot, joint_positions):
     for i, joint in enumerate(active_joints):
         print(f"  {i}: {joint.name}")
 
-    return active_joints
-
 
 def calculate_camera_fov():
     """Calculate camera field of view from intrinsic parameters."""
@@ -170,14 +169,36 @@ def setup_cameras(scene, robot):
             zed_left_link = link
         elif link.get_name() == "head_l3":
             head_link = link
+        elif link.get_name() == "base":
+            base_link = link
 
     # Position cameras
-    left_world_pose = zed_left_link.get_entity_pose()
-    depth_world_pose = zed_depth_link.get_entity_pose()
-    # head_quat = head_link.get_entity_pose().q
+    left_world_position = zed_left_link.get_entity_pose().p
+    depth_world_position = zed_depth_link.get_entity_pose().p
+    
+    base_quat = base_link.get_entity_pose().q
+    zed_depth_quat = zed_depth_link.get_entity_pose().q
 
-    left_camera.set_entity_pose(left_world_pose)
-    depth_camera.set_entity_pose(depth_world_pose)
+    quat_zed_frame = qmult(base_quat, zed_depth_quat)
+
+    # Convert quaternion to rotation matrix
+    from transforms3d.quaternions import quat2mat
+    rot_matrix = quat2mat(quat_zed_frame)
+    
+    # Original: [x, y, z] -> New: [z, -x, -y]
+    rot_matrix_transformed = np.column_stack([
+        rot_matrix[:, 2],   # z column becomes column 0
+        -rot_matrix[:, 0],  # -x column becomes column 1  
+        -rot_matrix[:, 1]   # -y column becomes column 2
+    ])
+    
+    # Convert back to quaternion
+    from transforms3d.quaternions import mat2quat
+    quat_base_frame = mat2quat(rot_matrix_transformed)
+
+
+    left_camera.set_entity_pose(sapien.Pose(p=left_world_position, q=quat_base_frame))
+    depth_camera.set_entity_pose(sapien.Pose(p=depth_world_position, q=quat_base_frame))
 
     # Print camera information
     print("Left camera intrinsic matrix\n", left_camera.get_intrinsic_matrix())
@@ -260,7 +281,7 @@ def demo(fix_root_link, balance_passive_force):
     # Load and configure robot
     robot = load_robot(scene, fix_root_link)
     joint_positions = get_joint_positions()
-    active_joints = configure_robot_joints(robot, joint_positions)
+    configure_robot_joints(robot, joint_positions)
 
     # Setup cameras
     left_camera, depth_camera = setup_cameras(scene, robot)
